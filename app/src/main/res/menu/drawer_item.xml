@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Ana Sayfa" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/avatar"
+            android:title="Profilim" />
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_news"
+            android:title="Haberler" />
+        <item
+            android:id="@+id/nav_leaders"
+            android:icon="@drawable/leader"
+            android:title="Sıralama" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/gear"
+            android:title="Ayarlar" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/contact"
+            android:title="İletişime Geçin" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="Hesaptan Çık" />
+    </group>
+
+    <group
+        android:id="@+id/nav_bottom">
+        <item
+            android:id="@+id/nav_exit"
+            android:title="Çıkış" />
+    </group>
+</menu>

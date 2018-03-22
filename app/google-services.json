@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "334336024333",
+    "firebase_url": "https://betc-123ea.firebaseio.com",
+    "project_id": "betc-123ea",
+    "storage_bucket": "betc-123ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334336024333:android:2757ccaf61befd03",
+        "android_client_info": {
+          "package_name": "com.example.onurp.betc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334336024333-fsoig1osmmavmpuf15sj02cm498otbui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onurp.betc",
+            "certificate_hash": "ade2a956b0243043cde14fa1ce44ac97b2a763e3"
+          }
+        },
+        {
+          "client_id": "334336024333-fb6qn407j63kodg7fi7t7tt5q3ape4b0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtDHZIGor8ysDxvxBpPjmJSG1nayc6jVw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334336024333-fb6qn407j63kodg7fi7t7tt5q3ape4b0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

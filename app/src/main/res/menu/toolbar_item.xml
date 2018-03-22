@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/sort"
+        android:title="Sort"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_sort"
+        android:orderInCategory="3">
+        <menu>
+            <item
+                android:id="@+id/sort_name"
+                android:title="Name" />
+            <item
+                android:id="@+id/sort_price"
+                android:title="Price" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/refresh"
+        android:orderInCategory="4"
+        android:title="Refresh"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_refresh"/>
+
+    <item android:id="@+id/search"
+        android:orderInCategory="2"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:iconifiedByDefault="false"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:icon="@drawable/ic_search"/>
+
+</menu>
