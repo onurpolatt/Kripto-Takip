@@ -87,7 +87,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             e.printStackTrace();
         }
 
-        // loading album cover using Glide library
         Glide.with(mContext).load(articles.getUrlToImage()).into(holder.thumbnail);
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {

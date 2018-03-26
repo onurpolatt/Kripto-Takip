@@ -19,6 +19,7 @@ import com.example.onurp.betc.api.APInterface;
 import com.example.onurp.betc.auth.LoginActivity;
 import com.example.onurp.betc.auth.SignupActivity;
 import com.example.onurp.betc.fragments.HomeFragment;
+import com.example.onurp.betc.fragments.MarketFragment;
 import com.example.onurp.betc.fragments.NewsFragment;
 import com.example.onurp.betc.fragments.ProfileFragment;
 import com.example.onurp.betc.model.User;
@@ -114,13 +115,16 @@ public class MainActivity extends AppCompatActivity {
                             case 3: Toast.makeText(getApplicationContext(),"NEWS",Toast.LENGTH_SHORT).show();
                                     fragment = new NewsFragment();
                                     break;
-                            case 4: Toast.makeText(getApplicationContext(),"LEADERS",Toast.LENGTH_SHORT).show();
+                            case 4: Toast.makeText(getApplicationContext(),"EXCHANGES",Toast.LENGTH_SHORT).show();
+                                    fragment = new MarketFragment();
                                     break;
-                            case 5: Toast.makeText(getApplicationContext(),"SETTINGS",Toast.LENGTH_SHORT).show();
+                            case 5: Toast.makeText(getApplicationContext(),"LEADERS",Toast.LENGTH_SHORT).show();
                                     break;
-                            case 6: Toast.makeText(getApplicationContext(),"CONTACT",Toast.LENGTH_SHORT).show();
+                            case 6: Toast.makeText(getApplicationContext(),"SETTINGS",Toast.LENGTH_SHORT).show();
                                     break;
-                            case 7: Toast.makeText(getApplicationContext(),"LOGOUT",Toast.LENGTH_SHORT).show();
+                            case 7: Toast.makeText(getApplicationContext(),"CONTACT",Toast.LENGTH_SHORT).show();
+                                    break;
+                            case 8: Toast.makeText(getApplicationContext(),"LOGOUT",Toast.LENGTH_SHORT).show();
                                     logout();
                                     break;
 

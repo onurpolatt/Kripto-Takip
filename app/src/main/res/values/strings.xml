@@ -9,4 +9,22 @@
         <item>Euro (EUR)</item>
         <item>Turkish Lira (TRY)</item>
     </string-array>
+
+    <string-array name="markets">
+        <item>Bitfinex</item>
+        <item>Bitstamp</item>
+        <item>Coinbase</item>
+        <item>Kraken</item>
+        <item>Gemini</item>
+        <item>HitBTC</item>
+        <item>itBit</item>
+        <item>Poloniex</item>
+        <item>BitTrex</item>
+        <item>TrustDEX</item>
+        <item>Cexio</item>
+        <item>LakeBTC</item>
+        <item>LiveCoin</item>
+        <item>Coincap</item>
+        <item>Exmo</item>
+    </string-array>
 </resources>

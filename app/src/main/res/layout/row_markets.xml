@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:layout_margin="@dimen/market_layout_margin"
+    android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/market_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            fontPath="fonts/robotoregular.ttf"
+            android:id="@+id/market_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/market_text_margin_left"
+            android:text="Bitfinex"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_weight="4"/>
+
+        <ImageView
+            android:id="@+id/market_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:src="@drawable/ic_arrow_right"
+            android:layout_weight="1"/>
+
+
+</LinearLayout>
