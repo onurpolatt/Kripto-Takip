@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.onurp.betc.R;
 import com.example.onurp.betc.WebViewActivity;
+import com.example.onurp.betc.interfaces.MarketsOnItemClickListener;
 import com.example.onurp.betc.model.Articles;
 
 import java.text.ParseException;
@@ -30,12 +31,14 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
     private List<String> dataSet;
     private List<Integer> marketImages;
     public Context mContext;
-    LayoutInflater layoutInflater;
+    public LayoutInflater layoutInflater;
+    public MarketsOnItemClickListener marketsOnItemClickListener;
 
-    public MarketAdapter(Context mContext, List<String> data,List<Integer> marketImages) {
+    public MarketAdapter(Context mContext, List<String> data,List<Integer> marketImages,MarketsOnItemClickListener marketsOnItemClickListener) {
         this.mContext= mContext;
         this.dataSet = data;
         this.marketImages = marketImages;
+        this.marketsOnItemClickListener = marketsOnItemClickListener;
         layoutInflater = LayoutInflater.from(mContext);
         Log.d("MARKET", "MARKET constructor");
     }
@@ -62,8 +65,15 @@ public class MarketAdapter extends RecyclerView.Adapter<MarketAdapter.MyViewHold
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_markets, parent, false);
 
+        final MarketAdapter.MyViewHolder myViewHolder = new MarketAdapter.MyViewHolder(view);
 
-        MarketAdapter.MyViewHolder myViewHolder = new MarketAdapter.MyViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                marketsOnItemClickListener.onMarketClick(v, myViewHolder.getAdapterPosition());
+            }
+        });
+
         return myViewHolder;
     }
 

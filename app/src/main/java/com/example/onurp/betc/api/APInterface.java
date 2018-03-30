@@ -15,8 +15,7 @@ import retrofit2.http.Query;
 public interface APInterface {
     String BASE_URL="https://api.coinmarketcap.com/v1/";
 
-    @GET("ticker")
-    Call<List<Coins>> getUsdCoins();
+
 
     @GET("ticker")
     Call<List<Coins>> getCurrencyCoins(@Query("convert")String currency);

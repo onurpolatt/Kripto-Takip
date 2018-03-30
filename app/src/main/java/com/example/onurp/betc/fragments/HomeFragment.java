@@ -1,7 +1,9 @@
 package com.example.onurp.betc.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -68,19 +71,29 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     public static final int DIALOG_REQUEST_CODE = 1;
     private String currency = "USD";
     private TextView textView;
+    private LinearLayout linearLayout;
     @BindView(R.id.progressBar)ProgressBar progressBar;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this,view);
-        getActivity().setTitle("Home");
         setHasOptionsMenu(true);
 
         initView(view);
         loadJSON(currency);
+        linearLayout = (LinearLayout)toolbar.findViewById(R.id.spinnerCurrency);
+        linearLayout.setVisibility(View.VISIBLE);
+
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
+
     }
 
     @Override

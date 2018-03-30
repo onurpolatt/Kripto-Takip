@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.example.onurp.betc.ItemDivider;
@@ -42,12 +45,16 @@ public class NewsFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private static NewsAdapter adapter;
+    private Toolbar toolbar;
+    private LinearLayout linearLayout;
     @BindView(R.id.progressBar_news)ProgressBar progressBar;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this,view);
+        toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        linearLayout = (LinearLayout)toolbar.findViewById(R.id.spinnerCurrency);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view_news);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -74,12 +81,19 @@ public class NewsFragment extends Fragment {
                 Log.e(TAG, t.toString());
             }
         });
-
+        linearLayout.setVisibility(View.GONE);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("News");
     }
 }

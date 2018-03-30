@@ -1,6 +1,8 @@
 package com.example.onurp.betc;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             String uid = user.getUid();
             writeNewUser(uid,name,email);
         }
-
+        Log.d("MARKET", "MAIN TIME");
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.header)
@@ -138,6 +141,12 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 }).build();
+
+        SharedPreferences mPreferences = this.getSharedPreferences("first_time", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putBoolean("firstTime", true);
+        editor.commit();
+
         result.setSelectionAtPosition(1,true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
@@ -161,5 +170,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void openDrawer() {
         result.openDrawer();
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }
