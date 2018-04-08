@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
+    android:background="@color/icons">
 
     <include
         android:id="@+id/toolbar_market"
@@ -20,5 +23,30 @@
         android:layout_marginTop="?attr/actionBarSize"
         android:scrollbars="vertical"
         />
+    <RelativeLayout
+        android:id="@+id/relative_nodata"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/img_nodata"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_nodata"/>
+        <TextView
+            fontPath="fonts/robotoregular.ttf"
+            android:layout_marginTop="@dimen/no_data_textview"
+            android:id="@+id/empty_view"
+            android:layout_below="@+id/img_nodata"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NO DATA AVAILABLE" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

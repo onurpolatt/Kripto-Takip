@@ -37,6 +37,7 @@ import com.example.onurp.betc.adapter.RecycleAdapter;
 import com.example.onurp.betc.api.APIClient;
 import com.example.onurp.betc.api.APInterface;
 import com.example.onurp.betc.dialogs.SpinnerDialog;
+import com.example.onurp.betc.listener.GetStringCurrencyBack;
 import com.example.onurp.betc.model.Coins;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -56,7 +57,7 @@ import retrofit2.Response;
  * Created by onurp on 9.03.2018.
  */
 
-public class HomeFragment extends Fragment implements SearchView.OnQueryTextListener{
+public class HomeFragment extends Fragment implements SearchView.OnQueryTextListener,GetStringCurrencyBack{
     private static RecycleAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private boolean checkSortName = false;
@@ -72,6 +73,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     private String currency = "USD";
     private TextView textView;
     private LinearLayout linearLayout;
+    private  ArrayList<String> myCurrencyList;
     @BindView(R.id.progressBar)ProgressBar progressBar;
     @Nullable
     @Override
@@ -79,6 +81,12 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this,view);
         setHasOptionsMenu(true);
+
+        myCurrencyList = new ArrayList<String>();
+
+
+        String[] myCurrencies = getResources().getStringArray(R.array.currencies);
+        myCurrencyList.addAll(Arrays.asList(myCurrencies));
 
         initView(view);
         loadJSON(currency);
@@ -97,6 +105,13 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     }
 
     @Override
+    public void onComplete(String currency) {
+        textView.setText(currency);
+        myCurrencyList.clear();
+        loadJSON(currency);//UI guncelle
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
@@ -110,7 +125,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
             ımageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SpinnerDialog dialog = SpinnerDialog.newInstance();
+                    SpinnerDialog dialog = SpinnerDialog.newInstance(myCurrencyList);
                     dialog.setTargetFragment(HomeFragment.this, DIALOG_REQUEST_CODE);
                     dialog.show(getActivity().getSupportFragmentManager(), "dialog");
                 }
@@ -252,6 +267,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
         adapter.notifyDataSetChanged();
     }
+
     public String getSymbol(String data){
        String[] parts = data.split("\\(");
        parts[1] = parts[1].replace(")", "");

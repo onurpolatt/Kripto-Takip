@@ -57,10 +57,11 @@ public class ExchangeDeserializer implements JsonDeserializer<Exchanges> {
                         String price = toSymbol.get("PRICE").getAsString();
                         String volume = toSymbol.get("VOLUME24HOURTO").getAsString();
                         String fSymbol = toSymbol.get("FROMSYMBOL").getAsString();
+                        String currencySymbol = toSymbol.get("TOSYMBOL").getAsString();
                         String cPercent = toSymbol.get("CHANGEPCT24HOUR").getAsString();
                         String coinName = tSymbol;
 
-                        MarketCoinInfo marketCoinInfo = new MarketCoinInfo(price,volume,fSymbol,cPercent,tSymbol);
+                        MarketCoinInfo marketCoinInfo = new MarketCoinInfo(price,volume,fSymbol,cPercent,tSymbol,currencySymbol);
                         innerObject.put(fromSymbol,marketCoinInfo);
                     }
                 pairsPerCoin.put(tSymbol, innerObject);

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_white_1000"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <include
+        android:id="@+id/toolbar_graph"
+        layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/timepicker"
+        android:orientation="horizontal"
+        android:weightSum="12"
+        android:layout_below="@+id/toolbar_graph"
+        android:layout_marginTop="@dimen/graph_margin"
+        android:clickable="true"
+        tools:ignore="MissingPrefix">
+
+        <View
+            android:id="@+id/view_first"
+            android:duplicateParentState="true"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:background="@color/colorAccent"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_marginStart="10dp"
+            android:duplicateParentState="true"
+            fontPath="fonts/robotoregular.ttf"
+            android:focusableInTouchMode="false"
+            android:id="@+id/onehour"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:clickable="false"
+            android:text="1H"/>
+        <TextView
+            android:duplicateParentState="true"
+            fontPath="fonts/robotoregular.ttf"
+            android:focusableInTouchMode="false"
+            android:id="@+id/oneday"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:clickable="false"
+            android:text="1D"/>
+        <TextView
+            android:duplicateParentState="true"
+            fontPath="fonts/robotoregular.ttf"
+            android:focusableInTouchMode="false"
+            android:id="@+id/oneweek"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:clickable="false"
+            android:text="1W"/>
+        <TextView
+            android:duplicateParentState="true"
+            fontPath="fonts/robotoregular.ttf"
+            android:focusableInTouchMode="false"
+            android:id="@+id/onemonth"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:clickable="false"
+            android:text="1M"/>
+
+        <TextView
+            android:duplicateParentState="true"
+            fontPath="fonts/robotoregular.ttf"
+            android:focusableInTouchMode="false"
+            android:id="@+id/oneyear"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:clickable="false"
+            android:layout_marginEnd="10dp"
+            android:text="1Y"/>
+
+        <View
+            android:duplicateParentState="true"
+            android:id="@+id/view_last"
+            android:clickable="false"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar_graphs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/linechart"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/timepicker"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

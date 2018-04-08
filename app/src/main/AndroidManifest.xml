@@ -29,6 +29,8 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".WebViewActivity"></activity>
         <activity android:name=".MarketDetailActivity"></activity>
+        <activity android:name=".graphs.GraphActivity"></activity>
+        <activity android:name=".AddAlertActivity"></activity>
     </application>
 
 </manifest>

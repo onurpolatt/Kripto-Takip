@@ -39,12 +39,16 @@ public class CoinListDeserializer implements JsonDeserializer<CoinData>{
             JsonObject mCoinInfo = entry.getValue().getAsJsonObject();
             String coinFullName;
             String coinImageUrl;
+            String coinSortOrder;
 
-            if(mCoinInfo.get("FullName") == null){
+
+            if(mCoinInfo.get("FullName") == null || mCoinInfo.get("SortOrder") == null){
                 coinFullName = null;
+                coinSortOrder = "150";
             }
             else {
                 coinFullName = mCoinInfo.get("FullName").getAsString();
+                coinSortOrder = mCoinInfo.get("SortOrder").getAsString();
             }
             if(mCoinInfo.get("ImageUrl") == null){
                 coinImageUrl = null;
@@ -53,7 +57,7 @@ public class CoinListDeserializer implements JsonDeserializer<CoinData>{
                 coinImageUrl = mCoinInfo.get("ImageUrl").getAsString();
             }
 
-            CoinInfo coinInfo = new CoinInfo(coinImageUrl,coinFullName);
+            CoinInfo coinInfo = new CoinInfo(coinImageUrl,coinFullName,coinSortOrder);
 
 
            result.put(mCoinName, coinInfo);

@@ -3,6 +3,7 @@ package com.example.onurp.betc.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,11 +27,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MarketCoinAdapter extends RecyclerView.Adapter<MarketCoinAdapter.MyViewHolder> {
-
+    private static String BASE_URL = "https://www.cryptocompare.com";
     private ArrayList<MarketCoinInfo> dataSet;
     private HashMap<String,CoinInfo> coinList;
     public Context mContext;
     public LayoutInflater layoutInflater;
+    public MarketsOnItemClickListener marketsOnItemClickListener;
+
+    public MarketCoinAdapter(Context mContext, ArrayList<MarketCoinInfo> data, HashMap<String,CoinInfo> coinList,MarketsOnItemClickListener marketsOnItemClickListener) {
+        this.mContext= mContext;
+        this.dataSet = data;
+        this.coinList = coinList;
+        this.marketsOnItemClickListener = marketsOnItemClickListener;
+        layoutInflater = LayoutInflater.from(mContext);
+        Log.d("MARKET", "MARKET constructor");
+    }
 
     public MarketCoinAdapter(Context mContext, ArrayList<MarketCoinInfo> data, HashMap<String,CoinInfo> coinList) {
         this.mContext= mContext;
@@ -42,11 +53,11 @@ public class MarketCoinAdapter extends RecyclerView.Adapter<MarketCoinAdapter.My
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.coin_symbol)TextView mSymbol;
-        @BindView(R.id.coin_name)TextView mName;
-        @BindView(R.id.volume24h)TextView mVolume;
-        @BindView(R.id.coin_price)TextView mPrice;
-        @BindView(R.id.percent_change)TextView mPercent;
+        @BindView(R.id.coin_image_markets)ImageView mImage;
+        @BindView(R.id.coin_name_markets)TextView mName;
+        @BindView(R.id.volume24h_markets)TextView mVolume;
+        @BindView(R.id.coin_price_markets)TextView mPrice;
+        @BindView(R.id.percent_change_markets)TextView mPercent;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -62,10 +73,17 @@ public class MarketCoinAdapter extends RecyclerView.Adapter<MarketCoinAdapter.My
     public MarketCoinAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                          int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_layout, parent, false);
+                .inflate(R.layout.row_layout_markets, parent, false);
 
 
         final MarketCoinAdapter.MyViewHolder myViewHolder = new MarketCoinAdapter.MyViewHolder(view);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                marketsOnItemClickListener.onMarketClick(v, myViewHolder.getAdapterPosition());
+            }
+        });
 
         return myViewHolder;
     }
@@ -74,9 +92,14 @@ public class MarketCoinAdapter extends RecyclerView.Adapter<MarketCoinAdapter.My
     public void onBindViewHolder(final MarketCoinAdapter.MyViewHolder holder, final int listPosition) {
 
         MarketCoinInfo markets = dataSet.get(listPosition);
-         Log.d("TAG","DOGE INFO"+coinList.get(markets.getCOINNAME()));
+         //Log.d("TAG","DOGE INFO"+coinList.get(markets.getCOINNAME()));
+         if(coinList.get(markets.getCOINNAME()) != null){
+             Glide.with(mContext).load(BASE_URL+coinList.get(markets.getCOINNAME()).getImageUrl()).into(holder.mImage);
+         }
+         else {
+             Glide.with(mContext).load(R.drawable.ic_crypto).into(holder.mImage);
+         }
         holder.mName.setText(coinList.get(markets.getCOINNAME())!=null?coinList.get(markets.getCOINNAME()).getFullName():markets.getCOINNAME());
-        holder.mSymbol.setText(markets.getCOINNAME());
         holder.mVolume.setText(markets.getVOLUME24HOUR());
         holder.mPrice.setText(markets.getPRICE());
         holder.mPercent.setText(markets.getCHANGEPCT24HOUR());

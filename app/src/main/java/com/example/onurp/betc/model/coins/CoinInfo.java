@@ -35,9 +35,10 @@ public class CoinInfo implements Serializable {
 
     private String FullyPremined;
 
-    public CoinInfo(String imageUrl, String fullName) {
+    public CoinInfo(String imageUrl, String fullName,String SortOrder) {
         this.ImageUrl = imageUrl;
         this.FullName = fullName;
+        this.SortOrder = SortOrder;
     }
 
     public String getProofType ()
@@ -201,8 +202,7 @@ public class CoinInfo implements Serializable {
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [ProofType = "+ProofType+", TotalCoinSupply = "+TotalCoinSupply+", CoinName = "+CoinName+", SortOrder = "+SortOrder+", ImageUrl = "+ImageUrl+", Algorithm = "+Algorithm+", IsTrading = "+IsTrading+", Name = "+Name+", Url = "+Url+", Symbol = "+Symbol+", FullName = "+FullName+", Sponsored = "+Sponsored+", Id = "+Id+", TotalCoinsFreeFloat = "+TotalCoinsFreeFloat+", PreMinedValue = "+PreMinedValue+", FullyPremined = "+FullyPremined+"]";
+    public String toString() {
+        return getFullName();
     }
 }

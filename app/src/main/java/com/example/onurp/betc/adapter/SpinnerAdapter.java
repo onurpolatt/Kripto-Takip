@@ -39,7 +39,6 @@ public class SpinnerAdapter extends RecyclerView.Adapter<SpinnerAdapter.MyViewHo
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.img_currency)ImageView image;
         @BindView(R.id.txt_spinner_currency)TextView tCurrency;
 
         public MyViewHolder(View itemView) {

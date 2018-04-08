@@ -78,7 +78,6 @@ public class MarketFragment extends Fragment {
     private AllCoinAPInterface apiInterface;
     private  List<String> myMarketsList;
     private HashMap<String,CoinInfo> hashMap;
-    @BindView(R.id.progressBar_market)ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -95,19 +94,7 @@ public class MarketFragment extends Fragment {
         String[] myMarkets = getResources().getStringArray(R.array.markets);
         myMarketsList = Arrays.asList(myMarkets);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_markets);
-
-        if (isFirstTime()){
-            LoadJsonData();
-        }
-        else{
-            progressBar.setVisibility(View.GONE);
-            initView();
-            Log.d("MARKET", "COINLIST YOKUNUYOR:");
-            SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-            String coinJSON = sharedPref.getString("stringValue","");
-            hashMap = new Gson().fromJson(coinJSON, new TypeToken<HashMap<String,CoinInfo>>(){}.getType());
-            Log.d("MARKET", "COINLIST YOKUNUYOR:"+hashMap.get("ETH"));
-        }
+        initView();
 
         return view;
     }
@@ -141,55 +128,7 @@ public class MarketFragment extends Fragment {
         linearLayout.setVisibility(View.GONE);
     }
 
-    public void LoadJsonData(){
-        progressBar.setVisibility(View.VISIBLE);
-        apiInterface = AllCoinAPIClient.getClient().create(AllCoinAPInterface.class);
-        Call<CoinData> call = apiInterface.getAllCoins();
-        call.enqueue(new Callback<CoinData>() {
-            @Override
-            public void onResponse(Call<CoinData> call, Response<CoinData> response) {
-                CoinData coinList = response.body();
-                GsonBuilder builder = new GsonBuilder();
-                Gson gson = builder.enableComplexMapKeySerialization().setPrettyPrinting().create();
-                Type type = new TypeToken<HashMap<String,CoinInfo>>(){}.getType();
-                String json = gson.toJson(coinList.getResult(), type);//hashmap key-value değerlerini JSON string'e çevir
-                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("stringValue",json);
-                editor.commit();
-                progressBar.setVisibility(View.GONE);
-                hashMap = coinList.getResult();
-                initView();
-            }
 
-            @Override
-            public void onFailure(Call<CoinData> call, Throwable t) {
-
-                Log.d("MARKET", "COINLIST:"+t);
-            }});
-    }
-
-    public void saveArrayList(ArrayList<String> list, String key){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        SharedPreferences.Editor editor = prefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        editor.putString(key, json);
-        editor.apply();
-    }
-
-    private boolean isFirstTime() {
-        if (firstTime == null) {
-            SharedPreferences mPreferences = this.getActivity().getSharedPreferences("first_time", Context.MODE_PRIVATE);
-            firstTime = mPreferences.getBoolean("firstTime", true);
-            if (firstTime) {
-                SharedPreferences.Editor editor = mPreferences.edit();
-                editor.putBoolean("firstTime", false);
-                editor.commit();
-            }
-        }
-        return firstTime;
-    }
 
     @Override
     public void onDestroy() {

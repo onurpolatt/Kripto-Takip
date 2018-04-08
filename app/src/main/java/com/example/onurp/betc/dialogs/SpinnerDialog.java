@@ -19,10 +19,14 @@ import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
 
 import com.example.onurp.betc.ItemDivider;
+import com.example.onurp.betc.MarketDetailActivity;
 import com.example.onurp.betc.R;
 import com.example.onurp.betc.adapter.SpinnerAdapter;
+import com.example.onurp.betc.listener.GetStringCurrencyBack;
 import com.example.onurp.betc.listener.RecyclerItemClickListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,25 +38,29 @@ public class SpinnerDialog extends DialogFragment {
     private RecyclerView mRecyclerView;
     private SpinnerAdapter spinnerAdapter;
     private boolean isModal = false;
+    private  ArrayList<String> mCurrencyList;
+    private GetStringCurrencyBack mListener;
 
-    public static SpinnerDialog newInstance()
+    public static SpinnerDialog newInstance(ArrayList<String> currencyList)
     {
-        Bundle args = new Bundle();
 
         SpinnerDialog fragment = new SpinnerDialog();
+        Bundle args = new Bundle();
+        args.putStringArrayList("currency", currencyList);
         fragment.isModal = true;
         fragment.setArguments(args);
+
+
         return fragment;
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
-        String[] myCurrencies = getResources().getStringArray(R.array.currencies);
-        final List<String> myCurrencyList = Arrays.asList(myCurrencies);
+        mCurrencyList = getArguments().getStringArrayList("currency");
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.row_spinner,null);
         mRecyclerView = new RecyclerView(getActivity());
-        spinnerAdapter = new SpinnerAdapter(getActivity(),myCurrencyList);
+        spinnerAdapter = new SpinnerAdapter(getActivity(),mCurrencyList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(spinnerAdapter);
 
@@ -60,13 +68,20 @@ public class SpinnerDialog extends DialogFragment {
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Log.d("CLICK", "POSITION: " + myCurrencyList.get(position));
-                sendBackResult(myCurrencyList.get(position));
+                Log.d("CLICK", "POSITION: " + mCurrencyList.get(position));
+                if(getTargetFragment() != null){
+                    sendBackResult(mCurrencyList.get(position));
+                }
+                else{
+                    mListener.onComplete(mCurrencyList.get(position));
+                    dismiss();
+                }
+
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-                // ...
+
             }
         }));
 
@@ -96,6 +111,19 @@ public class SpinnerDialog extends DialogFragment {
         dialog.cancel();
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            this.mListener = (GetStringCurrencyBack) activity;
+        }
+        catch (final ClassCastException e) {
+            //throw new ClassCastException(activity.toString() + " must implement OnCompleteListener");
+        }
+    }
+
+
+
     public void sendBackResult(String result) {
         Fragment targetFragment = getTargetFragment();
         if (targetFragment != null) {
@@ -109,6 +137,7 @@ public class SpinnerDialog extends DialogFragment {
 
             dismiss();
         } else {
+
 
         }
     }

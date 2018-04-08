@@ -192,6 +192,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void showProgressDialog() {
+
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
             mProgressDialog.setCancelable(false);

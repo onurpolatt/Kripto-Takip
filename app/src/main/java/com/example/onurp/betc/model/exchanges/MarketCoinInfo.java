@@ -2,6 +2,8 @@ package com.example.onurp.betc.model.exchanges;
 
 public class MarketCoinInfo
 {
+    private String CURRENCY;
+
     private String COINNAME;
 
     private String PRICE;
@@ -46,12 +48,26 @@ public class MarketCoinInfo
 
     private String CHANGEPCT24HOUR;
 
-    public MarketCoinInfo(String PRICE, String VOLUME24HOUR, String FROMSYMBOL, String CHANGEPCT24HOUR,String COINNAME) {
+    public MarketCoinInfo(String PRICE, String VOLUME24HOUR, String FROMSYMBOL, String CHANGEPCT24HOUR,String COINNAME,String TOSYMBOL) {
         this.PRICE = PRICE;
         this.VOLUME24HOUR = VOLUME24HOUR;
         this.FROMSYMBOL = FROMSYMBOL;
         this.CHANGEPCT24HOUR = CHANGEPCT24HOUR;
         this.COINNAME = COINNAME;
+        this.TOSYMBOL = TOSYMBOL;
+    }
+
+    public MarketCoinInfo(String CURRENCY,String MARKET,String FROMSYMBOL) {
+        this.CURRENCY = CURRENCY;
+        this.MARKET = MARKET;
+    }
+
+    public String getCURRENCY() {
+        return CURRENCY;
+    }
+
+    public void setCURRENCY(String CURRENCY) {
+        this.CURRENCY = CURRENCY;
     }
 
     public String getCOINNAME() {

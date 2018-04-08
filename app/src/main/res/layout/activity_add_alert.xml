@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar_add_alert"
+        layout="@layout/toolbar_without_curreny"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/current_value_top_margin">
+        <org.fabiomsr.moneytextview.MoneyTextView
+            android:id="@+id/txt_current_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:symbolGravity="start"
+            app:decimalSeparator=","
+            app:baseTextSize="30sp"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Şu andaki değer"
+            android:layout_marginTop="@dimen/current_value__text_top_margin"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"/>
+
+        <View
+            android:layout_width="300dp"
+            android:background="@color/divider"
+            android:layout_marginTop="@dimen/current_view_top_margin"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="1dp">
+        </View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="9"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="@dimen/exchange_picker_top_margin">
+
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+
+            android:id="@+id/from_symbol_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_downicon"
+            android:layout_weight="4"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="to"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_weight="1" />
+
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/to_symbol_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_downicon"
+            android:layout_weight="4"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/exchange_picker_top_margin">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_exchangearrow"
+            android:layout_weight="1"/>
+
+
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            fontPath="fonts/robotoregular.ttf"
+            android:id="@+id/exchange_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_downicon"
+            android:layout_weight="4"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/exchange_picker_top_margin">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_coinicon"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"/>
+
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/greater_or_less_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_downicon"
+            android:layout_weight="2"/>
+
+        <TextView
+            android:id="@+id/alert_currency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"
+            android:text="$"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/alert_price"
+            android:inputType="number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
